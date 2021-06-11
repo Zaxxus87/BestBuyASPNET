@@ -22,9 +22,6 @@ namespace BestBuyASPNET
             return _conn.Query<Product>("SELECT * FROM PRODUCTS;");
         }
 
-        IEnumerable<Product> IProductRepo.GetAllProducts()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
