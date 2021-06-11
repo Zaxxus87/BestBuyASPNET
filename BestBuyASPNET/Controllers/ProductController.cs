@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BestBuyASPNET.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,26 @@ namespace BestBuyASPNET.Controllers
 
             return View(product);
         }
+
+        public IActionResult UpdateProduct(int id)
+        {
+            var prod = _repo.GetProduct(id);
+
+            if (prod == null)
+            {
+                return View("ProductNotFound");
+            }
+
+            return View(prod);
+        }
+
+        public IActionResult UpdateProductToDatabase(Product product)
+        {
+            _repo.UpdateProduct(product);
+
+            return RedirectToAction("ViewProduct", new { id = product.ProductID });
+        }
+
 
 
     }
