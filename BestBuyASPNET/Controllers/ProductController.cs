@@ -50,6 +50,26 @@ namespace BestBuyASPNET.Controllers
             return RedirectToAction("ViewProduct", new { id = product.ProductID });
         }
 
+        public IActionResult InsertProduct()
+        {
+            var prod = _repo.AssignCategory();
+
+            return View(prod);
+        }
+
+        public IActionResult InsertProductToDatabase(Product productToInsert)
+        {
+            _repo.InsertProduct(productToInsert);
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteProduct(Product product)
+        {
+            _repo.DeleteProduct(product);
+
+            return RedirectToAction("Index");
+        }
 
 
     }
